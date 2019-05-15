@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employies List</title>
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Employee List</h1>
+				<a href="new" class="btn btn-primary mb-2" >Create new employee</a>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>DNI</th>
+							<th>Name</th>
+							<th>Surname</th>
+							<th>Email</th>
+							<th>Option</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="employee : ${listEmployies}">
+							<td th:text="${employee.dni}" scope="row"></td>
+							<td th:text="${employee.name}"></td>
+							<td th:text="${employee.surname}"></td>
+							<td th:text="${employee.email}"></td>
+							<td>
+								<a th:href="@{'/edit/' + ${employee.dni}}" class="btn btn-primary">Edit</a>
+								<a th:href="@{'/delete/' + ${employee.dni}}" class="btn btn-primary">Delete</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
